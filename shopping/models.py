@@ -14,9 +14,17 @@ class Cart(models.Model):
 
 class Product(models.Model):
     title = models.CharField(null=True, blank=True, max_length=100)
-    description = models.CharField(mull=True, blank=True, max_length=100)
-    unit_price = model.DecimalField(max_digits=18, decimal_places=2, verbose_name='unit price')
+    description = models.CharField(null=True, blank=True, max_length=100)
+    unit_price = models.DecimalField(max_digits=18, decimal_places=2, verbose_name='unit price')
     total_items = models.IntegerField
     
     def __unicode__(self):
         return u'%s - %s' % (self.title, self.unit_price)
+
+class Item(models.Model):
+    cart = models.ForeignKey(Cart, verbose_name='cart', related_name='cart')
+    quantity = models.PositiveIntegerField(verbose_name='quantity')
+    product = models.ForeignKey(Product, verbose_name='product', related_name='product')
+
+    def __unicode__(self):
+        return u'%d units' % (self.quantity)
