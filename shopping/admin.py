@@ -1,3 +1,5 @@
+# admin login: admin/1234567a
+
 from django.contrib import admin
 from shopping.models import Product, Item, Cart
 
