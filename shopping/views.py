@@ -26,8 +26,7 @@ def add_to_cart(request):
         chars = string.ascii_uppercase + string.digits
         user_name = ''.join(random.choice(chars) for _ in range(9))
         password = '1234567a'
-        user = User.objects.create(username = user_name, first_name = 'guest', last_name = 'guest',
-        email = 'guest@gmail.com', is_active = True, is_staff = True)
+        user = User.objects.create(username = user_name, first_name = 'guest', last_name = 'guest', email = 'guest@gmail.com', is_active = True, is_staff = True)
         user.set_password(password)
         user.save()
         user = authenticate(username = user_name, password = password)
@@ -45,7 +44,7 @@ def add_to_cart(request):
 def calculate_sum(cart_items):
     items_sum = 0
     for item in cart_items:
-        items_sum = items_sum + (item.quantity * items.product.unit_price)
+        items_sum = items_sum + (item.quantity * item.product.unit_price)
     return items_sum
 
 def cart(request):
@@ -71,7 +70,7 @@ def update_item_quantity(request):
     return redirect('cart')
 
 def thank_you(request):
-    user = request.user_name
+    user = request.user
     items = ''
     cart_items = []
     if user.is_anonymous():

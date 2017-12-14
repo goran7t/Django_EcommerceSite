@@ -19,7 +19,7 @@ from shopping.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$/', index, name='index'),
+    url(r'^$', index, name='index'),
     url(r'^index/$', index, name='index'),
     url(r'^update_item/$', update_item_quantity, name='update_item_quantity'),
     url(r'^thankyou/$', thank_you, name='thank_you'),
